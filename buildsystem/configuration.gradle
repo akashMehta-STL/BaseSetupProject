@@ -1,0 +1,13 @@
+ext {
+    android = [
+            buildToolsVersion: "27.0.3",
+            minSdkVersion    : 21,
+            targetSdkVersion : 27,
+            compileSdkVersion: 27
+    ]
+    endpoints = [
+            devEnv : "\"ENTER_DEV_URL_HEAR\"",
+            stagEnv: "\"ENTER_STAGING_URL_HEAR\"",
+            prodEnv: "\"ENTER_PRODUCTION_URL_HEAR\""
+    ]
+}

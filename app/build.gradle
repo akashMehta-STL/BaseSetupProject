@@ -4,30 +4,91 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
-    compileSdkVersion 27
+    def androidVersions = rootProject.ext.android
+    compileSdkVersion androidVersions.compileSdkVersion
+    buildToolsVersion androidVersions.buildToolsVersion
     defaultConfig {
         applicationId "stllpt.com.basesetupproject"
-        minSdkVersion 15
-        targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion androidVersions.minSdkVersion
+        targetSdkVersion androidVersions.targetSdkVersion
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        // Change Only For Public Release
+        def versionMajor = 1 // For Major Features
+        def versionMinor = 0 // For Minor Features
+        def versionPatch = 0 // For Bug Fixing and Patch
+
+        versionCode versionMajor * 10000 + versionMinor * 100 + versionPatch
+        versionName "${versionMajor}.${versionMinor}.${versionPatch}"
+        multiDexEnabled true
     }
     buildTypes {
+        debug {
+            buildConfigField "boolean", "REPORT_CRASHES", "false"
+//            signingConfig signingConfigs.debug
+        }
         release {
+            buildConfigField "boolean", "REPORT_CRASHES", "true"
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    flavorDimensions "api"
+    productFlavors {
+        def endPoint = rootProject.ext.endpoints
+        developement {
+            dimension "api"
+            buildConfigField "String", "API", endPoint.devEnv
+        }
+
+        staging {
+            dimension "api"
+            buildConfigField "String", "API", endPoint.stagEnv
+        }
+
+        production {
+            dimension "api"
+            buildConfigField "String", "API", endPoint.prodEnv
         }
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation commonDependencies.supportAppCompat
+    implementation commonDependencies.supportDesign
+    implementation commonDependencies.supportRv
+    implementation commonDependencies.supportCv
+    implementation commonDependencies.supportV4
+    implementation commonDependencies.kotlinAnko
+    implementation commonDependencies.rxJava2
+    implementation commonDependencies.rxAndroid
+    implementation commonDependencies.rxKotlin
+    implementation commonDependencies.retrofitRxAdapter
+    implementation commonDependencies.rxBinding
+    implementation commonDependencies.rxBindingSupport
+    implementation commonDependencies.rxBindingAppCompat
+    implementation commonDependencies.rxBindingDesign
+    implementation commonDependencies.rxBindingRv
+    implementation commonDependencies.rxNetwork
+    implementation commonDependencies.okHttp
+    implementation commonDependencies.okHttpLogging
+    implementation commonDependencies.retrofit
+    implementation commonDependencies.retrofitConverterJackson
+    implementation commonDependencies.retrofitGson
+    debugImplementation commonDependencies.chuckDebug
+    releaseImplementation commonDependencies.chuckRelease
+    implementation commonDependencies.glide
+    kapt commonDependencies.glideAnnotation
+    implementation commonDependencies.dagger
+    kapt commonDependencies.daggerCompiler
+    implementation commonDependencies.kotlinAnko
+    implementation commonDependencies.multidex
 }

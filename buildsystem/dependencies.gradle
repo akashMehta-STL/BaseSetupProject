@@ -1,0 +1,61 @@
+allprojects {
+    repositories {
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
+}
+
+ext {
+
+    supportLib = '27.1.1'
+    rxJava2 = '2.2.0'
+    rxAndroid = '2.0.2'
+    rxKotlin = '2.3.0'
+    rxBinding = '2.1.1'
+    rxNetwork = '2.1.0'
+    okHttp = '3.11.0'
+    retrofit = '2.4.0'
+    chuck = '1.1.0'
+    glide = '4.7.1'
+    dagger = '2.17'
+    anko = '0.10.4'
+    multidex = '1.0.3'
+    playServices = '15.0.1'
+    commonDependencies = [
+            supportAppCompat  : "com.android.support:appcompat-v7:${supportLib}",
+            supportDesign     : "com.android.support:design:${supportLib}",
+            supportRv         : "com.android.support:recyclerview-v7:${supportLib}",
+            supportCv         : "com.android.support:cardview-v7:${supportLib}",
+            supportV4         : "com.android.support:support-v4:${supportLib}",
+            rxJava2           : "io.reactivex.rxjava2:rxjava:${rxJava2}",
+            rxAndroid         : "io.reactivex.rxjava2:rxandroid:${rxAndroid}",
+            rxKotlin          : "io.reactivex.rxjava2:rxkotlin:${rxKotlin}",
+            rxBinding         : "com.jakewharton.rxbinding2:rxbinding-kotlin:${rxBinding}",
+            rxBindingSupport  : "com.jakewharton.rxbinding2:rxbinding-support-v4-kotlin:${rxBinding}",
+            rxBindingAppCompat: "com.jakewharton.rxbinding2:rxbinding-appcompat-v7-kotlin:${rxBinding}",
+            rxBindingDesign   : "com.jakewharton.rxbinding2:rxbinding-design-kotlin:${rxBinding}",
+            rxBindingRv       : "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7-kotlin:${rxBinding}",
+            rxNetwork         : "com.github.pwittchen:reactivenetwork-rx2:${rxNetwork}",
+            okHttp            : "com.squareup.okhttp3:okhttp:${okHttp}",
+            okHttpLogging     : "com.squareup.okhttp3:logging-interceptor:${okHttp}",
+            retrofit          : "com.squareup.retrofit2:retrofit:${retrofit}",
+            retrofitGson      : "com.squareup.retrofit2:converter-gson:${retrofit}",
+            retrofitRxAdapter : "com.squareup.retrofit2:adapter-rxjava2:${retrofit}",
+            retrofitConverterJackson : "com.squareup.retrofit2:converter-jackson:${retrofit}",
+            chuckDebug        : "com.readystatesoftware.chuck:library:${chuck}",
+            chuckRelease      : "com.readystatesoftware.chuck:library-no-op:${chuck}",
+            glide             : "com.github.bumptech.glide:glide:${glide}",
+            glideAnnotation   : "com.github.bumptech.glide:compiler:${glide}",
+            dagger            : "com.google.dagger:dagger:${dagger}",
+            daggerCompiler    : "com.google.dagger:dagger-compiler:${dagger}",
+            kotlinAnko        : "org.jetbrains.anko:anko-commons:${anko}",
+            multidex          : "com.android.support:multidex:${rootProject.multidex}",
+            firebase          : "com.google.firebase:firebase-core:${rootProject.playServices}",
+            gcm               : "com.google.android.gms:play-services-gcm:${rootProject.playServices}",
+            auth              : "com.google.android.gms:play-services-auth:${rootProject.playServices}",
+            location          : "com.google.android.gms:play-services-location:${rootProject.playServices}",
+            map               : "com.google.android.gms:play-services-maps:${rootProject.playServices}"
+
+    ]
+
+}
