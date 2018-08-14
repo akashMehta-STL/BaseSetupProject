@@ -15,7 +15,7 @@ class AppApplication : MultiDexApplication() {
 
     companion object {
 
-        lateinit var instance: AppApplication
+        private lateinit var instance: AppApplication
 
         fun getAppContext(): AppApplication {
             return instance

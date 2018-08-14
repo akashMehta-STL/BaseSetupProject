@@ -8,5 +8,4 @@ import dagger.Module
 @Module
 class SessionHolderModule {
 
-
 }
