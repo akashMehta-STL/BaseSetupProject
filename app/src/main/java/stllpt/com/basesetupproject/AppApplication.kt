@@ -24,6 +24,7 @@ class AppApplication : MultiDexApplication() {
 
     override fun onCreate() {
         super.onCreate()
+        instance = this
         initMultiDex()
         initDagger()
     }

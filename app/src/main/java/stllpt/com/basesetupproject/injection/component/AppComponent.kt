@@ -3,6 +3,7 @@ package stllpt.com.basesetupproject.injection.component
 import dagger.Component
 import stllpt.com.basesetupproject.injection.module.RetrofitModule
 import stllpt.com.basesetupproject.injection.module.SessionHolderModule
+import stllpt.com.basesetupproject.ui.users.MainFragment
 import javax.inject.Singleton
 
 /**
@@ -14,5 +15,5 @@ import javax.inject.Singleton
     SessionHolderModule::class
 ])
 interface AppComponent {
-
+    fun inject(fragment: MainFragment)
 }

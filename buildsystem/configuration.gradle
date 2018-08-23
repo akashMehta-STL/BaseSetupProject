@@ -6,8 +6,8 @@ ext {
             compileSdkVersion: 27
     ]
     endpoints = [
-            devEnv : "\"ENTER_DEV_URL_HEAR\"",
-            stagEnv: "\"ENTER_STAGING_URL_HEAR\"",
-            prodEnv: "\"ENTER_PRODUCTION_URL_HEAR\""
+            devEnv : "\"https://api.github.com/\"",
+            stagEnv: "\"https://api.github.com/\"",
+            prodEnv: "\"https://api.github.com/\""
     ]
 }
