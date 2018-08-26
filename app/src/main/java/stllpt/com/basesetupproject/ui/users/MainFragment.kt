@@ -1,5 +1,7 @@
 package stllpt.com.basesetupproject.ui.users
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -14,19 +16,25 @@ import stllpt.com.basesetupproject.MainActivity
 import stllpt.com.basesetupproject.R
 import stllpt.com.basesetupproject.common.extensions.gone
 import stllpt.com.basesetupproject.common.extensions.visible
+import stllpt.com.basesetupproject.ui.users.components.MainState
 import stllpt.com.basesetupproject.ui.users.model.ItemsItem
+import stllpt.com.basesetupproject.ui.users.viewmodels.MainViewModel
 import javax.inject.Inject
 
 /**
  * Created by stllpt031 on 23/8/18.
  */
-class MainFragment : Fragment(), MainPresenter.View {
-    override val mContext: Context?
+class MainFragment : Fragment() {
+   val mContext: Context?
         get() = context
 
-    override val compositeDisposable: CompositeDisposable
+    val compositeDisposable: CompositeDisposable
         get() = CompositeDisposable()
     private val stringItemList = ArrayList<String>()
+
+    private val viewModel by lazy {
+        activity?.let { ViewModelProviders.of(it).get(MainViewModel::class.java) }
+    }
 
     @Inject
     lateinit var mPresenter: MainPresenter
@@ -38,13 +46,20 @@ class MainFragment : Fragment(), MainPresenter.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         ((context as MainActivity).application as AppApplication).mComponent.inject(this)
-        mPresenter.injectView(this)
-        mPresenter.fetchUserList()
+//        mPresenter.injectView(this)
+//        mPresenter.fetchUserList()
         lvContent.gone()
         pbContent.visible()
+        viewModel?.state?.observe(this, Observer<MainState> {
+            it?.let { render(it) }
+        })
     }
 
-    override fun onContentLoaded(itemList: List<ItemsItem>) {
+    private fun render(it: MainState) {
+        onContentLoaded(it.details)
+    }
+
+    private fun onContentLoaded(itemList: List<ItemsItem>) {
         itemList.map {
             it.name
         }.forEach {

@@ -21,6 +21,8 @@ ext {
     anko = '0.10.4'
     multidex = '1.0.3'
     playServices = '15.0.1'
+    archComponentsVersion = '1.1.1'
+    rxRelay = '2.0.0'
     commonDependencies = [
             supportAppCompat  : "com.android.support:appcompat-v7:${supportLib}",
             supportDesign     : "com.android.support:design:${supportLib}",
@@ -54,8 +56,12 @@ ext {
             gcm               : "com.google.android.gms:play-services-gcm:${rootProject.playServices}",
             auth              : "com.google.android.gms:play-services-auth:${rootProject.playServices}",
             location          : "com.google.android.gms:play-services-location:${rootProject.playServices}",
-            map               : "com.google.android.gms:play-services-maps:${rootProject.playServices}"
-
+            map               : "com.google.android.gms:play-services-maps:${rootProject.playServices}",
+            lcRuntime         : "android.arch.lifecycle:runtime:${rootProject.archComponentsVersion}",
+            lcExtension       : "android.arch.lifecycle:extensions:${rootProject.archComponentsVersion}",
+            lcReactiveStream  : "android.arch.lifecycle:reactivestreams:${rootProject.archComponentsVersion}",
+            lcCompiler        : "android.arch.lifecycle:compiler:${rootProject.archComponentsVersion}",
+            rxRelay           : "com.jakewharton.rxrelay2:rxrelay:${rootProject.rxRelay}"
     ]
 
 }

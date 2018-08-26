@@ -91,4 +91,9 @@ dependencies {
     kapt commonDependencies.daggerCompiler
     implementation commonDependencies.kotlinAnko
     implementation commonDependencies.multidex
+    implementation commonDependencies.lcRuntime
+    implementation commonDependencies.lcExtension
+    implementation commonDependencies.lcReactiveStream
+    kapt commonDependencies.lcCompiler
+    implementation commonDependencies.rxRelay
 }
