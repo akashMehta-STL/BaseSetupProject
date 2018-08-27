@@ -17,6 +17,7 @@ data class MainSources(
 
 sealed class MainActions {
     object SnackbarShown : MainActions()
+    object LoadScreen : MainActions()
 }
 
 sealed class MainSink {

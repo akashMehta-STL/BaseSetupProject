@@ -15,7 +15,7 @@ class MainViewModel : ViewModel() {
 
     init {
         val mainSources = MainSources(uiEvents)
-val sinks = main(mainSources)
+        val sinks = main(mainSources)
         state = LiveDataReactiveStreams.fromPublisher(sinks
                 .ofType(MainSink.State::class.java)
                 .map { it.state }
