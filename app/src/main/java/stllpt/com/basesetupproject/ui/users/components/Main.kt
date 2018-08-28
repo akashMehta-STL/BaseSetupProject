@@ -14,24 +14,16 @@ data class MainUiEvents(
         val loadScreen: PublishRelay<Unit> = PublishRelay.create()
 )
 
-data class MainSources(
-        val uiEvents: MainUiEvents
-)
-
 sealed class MainActions {
     object SnackbarShown : MainActions()
     object LoadScreen : MainActions()
 }
 
-sealed class MainSink {
-    data class State(val state: MainState) : MainSink()
-}
-
-fun main(sources: MainSources, mainPresenter: MainPresenter): Observable<MainSink.State> = intention(sources)
+fun main(sources: MainUiEvents, mainPresenter: MainPresenter): Observable<MainState> = intention(sources)
         .log("action")
         .publish {
             val state = model(it, mainPresenter)
-                    .map { MainSink.State(it) }
+                    .map { it }
 
             state
         }

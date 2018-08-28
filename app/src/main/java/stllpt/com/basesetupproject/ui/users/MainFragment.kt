@@ -33,10 +33,7 @@ class MainFragment : Fragment() {
         get() = CompositeDisposable()
     private val stringItemList = ArrayList<String>()
 
-    private val viewModel by lazy {
-        val factory = MainViewModelFactory(mPresenter)
-        activity?.let { ViewModelProviders.of(it, factory).get(MainViewModel::class.java) }
-    }
+    private lateinit var viewModel : MainViewModel
 
     @Inject
     lateinit var mPresenter: MainPresenter
@@ -49,12 +46,17 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         ((context as MainActivity).application as AppApplication).mComponent.inject(this)
         lvContent.gone()
-        viewModel?.state?.observe(this, Observer<MainState> {
-            it?.let {
-                render(it)
-            }
-        })
-        viewModel?.uiEvents?.loadScreen?.accept(Unit)
+        val factory = MainViewModelFactory(mPresenter)
+        activity?.let {
+            viewModel = ViewModelProviders.of(it, factory).get(MainViewModel::class.java)
+            viewModel.state.observe(this, Observer<MainState> {
+                it?.let {
+                    render(it)
+                }
+            })
+            viewModel.uiEvents.loadScreen.accept(Unit)
+        }
+
     }
 
     private fun render(it: MainState) {

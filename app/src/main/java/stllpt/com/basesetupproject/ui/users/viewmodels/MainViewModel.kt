@@ -15,11 +15,9 @@ class MainViewModel(mPresenter: MainPresenter) : ViewModel() {
     val uiEvents = MainUiEvents()
 
     init {
-        val mainSources = MainSources(uiEvents)
+        val mainSources = uiEvents
         val sinks = main(mainSources, mPresenter)
         state = LiveDataReactiveStreams.fromPublisher(sinks
-                .ofType(MainSink.State::class.java)
-                .map { it.state }
                 .toFlowable(BackpressureStrategy.LATEST)
         )
     }
