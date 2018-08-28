@@ -2,6 +2,7 @@ package stllpt.com.basesetupproject.ui.users.components
 
 import com.jakewharton.rxrelay2.PublishRelay
 import io.reactivex.Observable
+import stllpt.com.basesetupproject.common.extensions.log
 import stllpt.com.basesetupproject.ui.users.MainPresenter
 import stllpt.com.basesetupproject.ui.users.common.intention
 
@@ -27,6 +28,7 @@ sealed class MainSink {
 }
 
 fun main(sources: MainSources, mainPresenter: MainPresenter): Observable<MainSink.State> = intention(sources)
+        .log("action")
         .publish {
             val state = model(it, mainPresenter)
                     .map { MainSink.State(it) }

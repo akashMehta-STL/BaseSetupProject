@@ -50,7 +50,9 @@ class MainFragment : Fragment() {
         ((context as MainActivity).application as AppApplication).mComponent.inject(this)
         lvContent.gone()
         viewModel?.state?.observe(this, Observer<MainState> {
-            it?.let { render(it) }
+            it?.let {
+                render(it)
+            }
         })
         viewModel?.uiEvents?.loadScreen?.accept(Unit)
     }
