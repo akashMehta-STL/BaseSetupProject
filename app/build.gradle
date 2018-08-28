@@ -80,6 +80,7 @@ dependencies {
     implementation commonDependencies.rxNetwork
     implementation commonDependencies.okHttp
     implementation commonDependencies.okHttpLogging
+    implementation commonDependencies.multidex
     implementation commonDependencies.retrofit
     implementation commonDependencies.retrofitConverterJackson
     implementation commonDependencies.retrofitGson
@@ -90,5 +91,6 @@ dependencies {
     implementation commonDependencies.dagger
     kapt commonDependencies.daggerCompiler
     implementation commonDependencies.kotlinAnko
-    implementation commonDependencies.multidex
+    implementation commonDependencies.lcExtentions
+    kapt commonDependencies.lcCompiler
 }
