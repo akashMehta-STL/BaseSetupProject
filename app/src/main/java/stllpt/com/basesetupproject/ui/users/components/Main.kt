@@ -9,7 +9,8 @@ import stllpt.com.basesetupproject.ui.users.common.intention
  * Created by aakash on 26/8/18.
  */
 data class MainUiEvents(
-        val snackbarShown: PublishRelay<Unit> = PublishRelay.create()
+        val snackbarShown: PublishRelay<Unit> = PublishRelay.create(),
+        val loadScreen: PublishRelay<Unit> = PublishRelay.create()
 )
 
 data class MainSources(
@@ -23,16 +24,13 @@ sealed class MainActions {
 
 sealed class MainSink {
     data class State(val state: MainState) : MainSink()
-    data class State2(val state: MainState) : MainSink()
 }
 
-fun main(sources: MainSources, mainPresenter: MainPresenter): Observable<MainSink> = intention(sources)
+fun main(sources: MainSources, mainPresenter: MainPresenter): Observable<MainSink.State> = intention(sources)
         .publish {
             val state = model(it, mainPresenter)
                     .map { MainSink.State(it) }
-            val state2 = model(it, mainPresenter)
-                    .map { MainSink.State2(it) }
 
-            Observable.merge(state, state2)
+            state
         }
         .share()

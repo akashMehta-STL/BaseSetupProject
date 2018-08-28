@@ -10,6 +10,8 @@ import stllpt.com.basesetupproject.ui.users.components.MainSources
 fun intention(sources: MainSources) : Observable<MainActions>{
     val snackbarShown = sources.uiEvents.snackbarShown
             .map { MainActions.SnackbarShown }
-    val action = listOf(snackbarShown)
+    val loadScreen = sources.uiEvents.loadScreen
+            .map { MainActions.LoadScreen }
+    val action = listOf(snackbarShown, loadScreen)
     return Observable.merge(action)
 }

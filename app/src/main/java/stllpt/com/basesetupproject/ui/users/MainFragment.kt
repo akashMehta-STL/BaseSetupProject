@@ -49,10 +49,10 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         ((context as MainActivity).application as AppApplication).mComponent.inject(this)
         lvContent.gone()
-        pbContent.visible()
         viewModel?.state?.observe(this, Observer<MainState> {
             it?.let { render(it) }
         })
+        viewModel?.uiEvents?.loadScreen?.accept(Unit)
     }
 
     private fun render(it: MainState) {
