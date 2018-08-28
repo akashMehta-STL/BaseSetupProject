@@ -2,6 +2,7 @@ package stllpt.com.basesetupproject.ui.users.components
 
 import com.jakewharton.rxrelay2.PublishRelay
 import io.reactivex.Observable
+import stllpt.com.basesetupproject.ui.users.MainPresenter
 import stllpt.com.basesetupproject.ui.users.common.intention
 
 /**
@@ -21,15 +22,15 @@ sealed class MainActions {
 }
 
 sealed class MainSink {
-    data class State(val state : MainState) : MainSink()
-    data class State2(val state : MainState) : MainSink()
+    data class State(val state: MainState) : MainSink()
+    data class State2(val state: MainState) : MainSink()
 }
 
-fun main(sources: MainSources) : Observable<MainSink> = intention(sources)
+fun main(sources: MainSources, mainPresenter: MainPresenter): Observable<MainSink> = intention(sources)
         .publish {
-            val state = model(it)
+            val state = model(it, mainPresenter)
                     .map { MainSink.State(it) }
-            val state2 = model(it)
+            val state2 = model(it, mainPresenter)
                     .map { MainSink.State2(it) }
 
             Observable.merge(state, state2)

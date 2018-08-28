@@ -19,6 +19,7 @@ import stllpt.com.basesetupproject.common.extensions.visible
 import stllpt.com.basesetupproject.ui.users.components.MainState
 import stllpt.com.basesetupproject.ui.users.model.ItemsItem
 import stllpt.com.basesetupproject.ui.users.viewmodels.MainViewModel
+import stllpt.com.basesetupproject.ui.users.viewmodels.MainViewModelFactory
 import javax.inject.Inject
 
 /**
@@ -33,7 +34,8 @@ class MainFragment : Fragment() {
     private val stringItemList = ArrayList<String>()
 
     private val viewModel by lazy {
-        activity?.let { ViewModelProviders.of(it).get(MainViewModel::class.java) }
+        val factory = MainViewModelFactory(mPresenter)
+        activity?.let { ViewModelProviders.of(it, factory).get(MainViewModel::class.java) }
     }
 
     @Inject
@@ -46,8 +48,6 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         ((context as MainActivity).application as AppApplication).mComponent.inject(this)
-//        mPresenter.injectView(this)
-//        mPresenter.fetchUserList()
         lvContent.gone()
         pbContent.visible()
         viewModel?.state?.observe(this, Observer<MainState> {
