@@ -1,17 +1,17 @@
 package stllpt.com.basesetupproject.ui.users.components
 
-import com.jakewharton.rxrelay2.PublishRelay
 import io.reactivex.Observable
+import io.reactivex.subjects.PublishSubject
 import stllpt.com.basesetupproject.common.extensions.log
-import stllpt.com.basesetupproject.ui.users.MainPresenter
+import stllpt.com.basesetupproject.ui.users.MainEndPoint
 import stllpt.com.basesetupproject.ui.users.common.intention
 
 /**
  * Created by aakash on 26/8/18.
  */
 data class MainUiEvents(
-        val snackbarShown: PublishRelay<Unit> = PublishRelay.create(),
-        val loadScreen: PublishRelay<Unit> = PublishRelay.create()
+        val snackbarShown: PublishSubject<Unit> = PublishSubject.create(),
+        val loadScreen: PublishSubject<Unit> = PublishSubject.create()
 )
 
 sealed class MainActions {
@@ -19,12 +19,13 @@ sealed class MainActions {
     object LoadScreen : MainActions()
 }
 
-fun main(sources: MainUiEvents, mainPresenter: MainPresenter): Observable<MainState> = intention(sources)
-        .log("action")
-        .publish {
-            val state = model(it, mainPresenter)
-                    .map { it }
-
-            state
-        }
-        .share()
+fun main(sources: MainUiEvents, mainEndPoint: MainEndPoint): Observable<MainState> {
+    val intention = intention(sources)
+    log(" Main : intention : $intention")
+    return intention.log("UIaction : source : $sources, mainEndPoint : $mainEndPoint")
+            .publish {
+                model(it, mainEndPoint)
+                        .map { it }
+            }
+            .share()
+}

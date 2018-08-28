@@ -1,5 +1,6 @@
 package stllpt.com.basesetupproject.ui.users
 
+import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
@@ -16,6 +17,7 @@ import stllpt.com.basesetupproject.MainActivity
 import stllpt.com.basesetupproject.R
 import stllpt.com.basesetupproject.common.extensions.gone
 import stllpt.com.basesetupproject.common.extensions.visible
+import stllpt.com.basesetupproject.shareddata.base.BaseFragment
 import stllpt.com.basesetupproject.ui.users.components.MainState
 import stllpt.com.basesetupproject.ui.users.model.ItemsItem
 import stllpt.com.basesetupproject.ui.users.viewmodels.MainViewModel
@@ -25,7 +27,7 @@ import javax.inject.Inject
 /**
  * Created by stllpt031 on 23/8/18.
  */
-class MainFragment : Fragment() {
+class MainFragment :  Fragment(), LifecycleOwner {
    val mContext: Context?
         get() = context
 
@@ -36,7 +38,7 @@ class MainFragment : Fragment() {
     private lateinit var viewModel : MainViewModel
 
     @Inject
-    lateinit var mPresenter: MainPresenter
+    lateinit var mEndPoint: MainEndPoint
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_main, container, false)
@@ -46,7 +48,7 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         ((context as MainActivity).application as AppApplication).mComponent.inject(this)
         lvContent.gone()
-        val factory = MainViewModelFactory(mPresenter)
+        val factory = MainViewModelFactory(mEndPoint)
         activity?.let {
             viewModel = ViewModelProviders.of(it, factory).get(MainViewModel::class.java)
             viewModel.state.observe(this, Observer<MainState> {
@@ -54,7 +56,7 @@ class MainFragment : Fragment() {
                     render(it)
                 }
             })
-            viewModel.uiEvents.loadScreen.accept(Unit)
+            viewModel.uiEvents.loadScreen.onNext(Unit)
         }
 
     }

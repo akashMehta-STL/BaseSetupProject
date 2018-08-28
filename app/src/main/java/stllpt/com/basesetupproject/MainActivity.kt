@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import stllpt.com.basesetupproject.ui.users.MainFragment
 
-class MainActivity : AppCompatActivity() , LifecycleOwner{
+class MainActivity : AppCompatActivity(), LifecycleOwner {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

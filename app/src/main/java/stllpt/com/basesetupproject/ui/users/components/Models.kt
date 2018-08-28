@@ -3,7 +3,7 @@ package stllpt.com.basesetupproject.ui.users.components
 import io.reactivex.Observable
 import stllpt.com.basesetupproject.common.helper.SnackbarMessage
 import stllpt.com.basesetupproject.ui.users.GetApiResponse
-import stllpt.com.basesetupproject.ui.users.MainPresenter
+import stllpt.com.basesetupproject.ui.users.MainEndPoint
 import stllpt.com.basesetupproject.ui.users.model.ItemsItem
 
 /**
@@ -20,7 +20,7 @@ typealias MainStateReducer = (MainState) -> MainState
 
 
 fun model(action: Observable<MainActions>,
-          endPoints: MainPresenter): Observable<MainState> {
+          endPoints: MainEndPoint): Observable<MainState> {
     val snacbarShown = action
             .ofType(MainActions.SnackbarShown::class.java)
             .map { snackbarReducer() }

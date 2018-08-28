@@ -13,7 +13,7 @@ import javax.inject.Inject
 /**
  * Created by stllpt031 on 23/8/18.
  */
-class MainPresenter @Inject constructor(private val mApi: ApiEndPoints) {
+class MainEndPoint @Inject constructor(private val mApi: ApiEndPoints) {
 
     fun fetchUserList(): Observable<GetApiResponse> {
         return mApi.fetchUserList()
