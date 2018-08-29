@@ -8,4 +8,93 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="WrapContentLayout">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+
+    <!-- Base Text Size Styles -->
+    <style name="CommonRegularTextStyle" parent="@style/WrapContentLayout">
+        <item name="android:textColor">@color/textColorRegular</item>
+    </style>
+
+    <style name="CommonLightTextStyle" parent="@style/WrapContentLayout">
+        <item name="android:textColor">@color/textColorLight</item>
+    </style>
+
+    <!-- Base Regular Text Size Styles -->
+    <style name="CommonRegularHeadingText" parent="@style/CommonRegularTextStyle">
+        <item name="android:textSize">@dimen/font_heading</item>
+    </style>
+
+    <style name="CommonRegularHeadingSmallText" parent="@style/CommonRegularTextStyle">
+        <item name="android:textSize">@dimen/font_heading_small</item>
+    </style>
+
+    <style name="CommonRegularTitleText" parent="@style/CommonRegularTextStyle">
+        <item name="android:textSize">@dimen/font_title</item>
+    </style>
+
+    <style name="CommonRegularSubTitleText" parent="@style/CommonRegularTextStyle">
+        <item name="android:textSize">@dimen/font_sub_title</item>
+    </style>
+
+    <style name="CommonRegularBodyText" parent="@style/CommonRegularTextStyle">
+        <item name="android:textSize">@dimen/font_body</item>
+    </style>
+
+    <style name="CommonRegularBodySmallText" parent="@style/CommonRegularTextStyle">
+        <item name="android:textSize">@dimen/font_body_small</item>
+    </style>
+
+    <style name="CommonRegularCaptionText" parent="@style/CommonRegularTextStyle">
+        <item name="android:textSize">@dimen/font_caption</item>
+    </style>
+
+    <style name="CommonRegularCaptionSmallText" parent="@style/CommonRegularTextStyle">
+        <item name="android:textSize">@dimen/font_caption_small</item>
+    </style>
+
+    <style name="CommonRegularTinyText" parent="@style/CommonRegularTextStyle">
+        <item name="android:textSize">@dimen/font_tiny</item>
+    </style>
+
+    <!-- Base Light Text Size Styles -->
+    <style name="CommonLightHeadingText" parent="@style/CommonLightTextStyle">
+        <item name="android:textSize">@dimen/font_heading</item>
+    </style>
+
+    <style name="CommonLightHeadingSmallText" parent="@style/CommonLightTextStyle">
+        <item name="android:textSize">@dimen/font_heading_small</item>
+    </style>
+
+    <style name="CommonLightTitleText" parent="@style/CommonLightTextStyle">
+        <item name="android:textSize">@dimen/font_title</item>
+    </style>
+
+    <style name="CommonLightSubTitleText" parent="@style/CommonLightTextStyle">
+        <item name="android:textSize">@dimen/font_sub_title</item>
+    </style>
+
+    <style name="CommonLightBodyText" parent="@style/CommonLightTextStyle">
+        <item name="android:textSize">@dimen/font_body</item>
+    </style>
+
+    <style name="CommonLightBodySmallText" parent="@style/CommonLightTextStyle">
+        <item name="android:textSize">@dimen/font_body_small</item>
+    </style>
+
+    <style name="CommonLightCaptionText" parent="@style/CommonLightTextStyle">
+        <item name="android:textSize">@dimen/font_caption</item>
+    </style>
+
+    <style name="CommonLightCaptionSmallText" parent="@style/CommonLightTextStyle">
+        <item name="android:textSize">@dimen/font_caption_small</item>
+    </style>
+
+    <style name="CommonLightTinyText" parent="@style/CommonLightTextStyle">
+        <item name="android:textSize">@dimen/font_tiny</item>
+    </style>
+    
 </resources>
